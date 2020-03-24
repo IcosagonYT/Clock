@@ -1,0 +1,217 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://themes/default.tres" type="Theme" id=1]
+[ext_resource path="res://dynamic/ubuntu/ubuntu_time.tres" type="DynamicFont" id=2]
+[ext_resource path="res://dynamic/ubuntu/ubuntu_extra.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scripts/digital.gd" type="Script" id=4]
+[ext_resource path="res://dynamic/ubuntu/settings_button.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="digital" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+time_label_path = NodePath("objects/vertical_container/time")
+date_label_path = NodePath("objects/vertical_container/date")
+background_path = NodePath("backgrounds/color")
+
+[node name="backgrounds" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="texture" type="TextureRect" parent="backgrounds"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 1 )
+stretch_mode = 2
+
+[node name="color" type="ColorRect" parent="backgrounds"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="objects" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vertical_container" type="VBoxContainer" parent="objects"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="time" type="Label" parent="objects/vertical_container"]
+margin_top = 224.0
+margin_right = 1024.0
+margin_bottom = 337.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "12:30 PM"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="date" type="Label" parent="objects/vertical_container"]
+margin_top = 341.0
+margin_right = 1024.0
+margin_bottom = 375.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Monday, March 23"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dialogs" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings_dialog" type="WindowDialog" parent="dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -146.0
+margin_top = -143.5
+margin_right = 146.0
+margin_bottom = 143.5
+window_title = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vertical_container" type="VBoxContainer" parent="dialogs/settings_dialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background_color_container" type="HBoxContainer" parent="dialogs/settings_dialog/vertical_container"]
+margin_right = 272.0
+margin_bottom = 25.0
+
+[node name="background_label" type="Label" parent="dialogs/settings_dialog/vertical_container/background_color_container"]
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 22.0
+text = "Background color "
+
+[node name="background_color_picker" type="ColorPickerButton" parent="dialogs/settings_dialog/vertical_container/background_color_container"]
+margin_left = 131.0
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="foreground_color_container" type="HBoxContainer" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 29.0
+margin_right = 272.0
+margin_bottom = 54.0
+
+[node name="foreground_label" type="Label" parent="dialogs/settings_dialog/vertical_container/foreground_color_container"]
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 22.0
+text = "Foreground color "
+
+[node name="foreground_color_picker" type="ColorPickerButton" parent="dialogs/settings_dialog/vertical_container/foreground_color_container"]
+margin_left = 131.0
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+color = Color( 1, 1, 1, 1 )
+
+[node name="seperator1" type="HSeparator" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 58.0
+margin_right = 272.0
+margin_bottom = 62.0
+
+[node name="fullscreen_checkbox" type="CheckBox" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 66.0
+margin_right = 272.0
+margin_bottom = 93.0
+text = "Fullscreen"
+
+[node name="alot_checkbox" type="CheckBox" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 97.0
+margin_right = 272.0
+margin_bottom = 124.0
+text = "Always on top"
+
+[node name="title_checkbox" type="CheckBox" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 128.0
+margin_right = 272.0
+margin_bottom = 155.0
+text = "Hide titlebar"
+
+[node name="seperator2" type="HSeparator" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 159.0
+margin_right = 272.0
+margin_bottom = 163.0
+
+[node name="utc_checkbox" type="CheckBox" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 167.0
+margin_right = 272.0
+margin_bottom = 194.0
+text = "UTC"
+
+[node name="hours_checkbox" type="CheckBox" parent="dialogs/settings_dialog/vertical_container"]
+margin_top = 198.0
+margin_right = 272.0
+margin_bottom = 225.0
+text = "24 Hours"
+
+[node name="settings_button" type="Button" parent="."]
+margin_right = 49.0
+margin_bottom = 19.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "Settings"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="color_changed" from="dialogs/settings_dialog/vertical_container/background_color_container/background_color_picker" to="." method="background_color_picker_color_changed"]
+[connection signal="color_changed" from="dialogs/settings_dialog/vertical_container/foreground_color_container/foreground_color_picker" to="." method="foreground_color_picker_color_changed"]
+[connection signal="pressed" from="dialogs/settings_dialog/vertical_container/fullscreen_checkbox" to="." method="fullscreen_checkbox_pressed"]
+[connection signal="pressed" from="dialogs/settings_dialog/vertical_container/alot_checkbox" to="." method="alot_checkbox_pressed"]
+[connection signal="pressed" from="dialogs/settings_dialog/vertical_container/title_checkbox" to="." method="title_checkbox_pressed"]
+[connection signal="pressed" from="dialogs/settings_dialog/vertical_container/utc_checkbox" to="." method="utc_checkbox_pressed"]
+[connection signal="pressed" from="dialogs/settings_dialog/vertical_container/hours_checkbox" to="." method="hours_checkbox_pressed"]
+[connection signal="pressed" from="settings_button" to="." method="settings_button_pressed"]
